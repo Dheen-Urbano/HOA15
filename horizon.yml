@@ -1,0 +1,16 @@
+---
+- name: Install Horizon
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Horizon packages
+      apt:
+        name: openstack-dashboard
+        state: present
+
+    - name: Configure Apache for Horizon
+      systemd:
+        name: apache2
+        state: started
+        enableW: true
